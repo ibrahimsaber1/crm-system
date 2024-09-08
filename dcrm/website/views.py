@@ -28,3 +28,8 @@ def logout_user(request):
     logout(request)
     messages.success(request, "u sussecfully loged out !!")
     return redirect('home')
+
+
+def regester(request):
+    return render(request , 'website/regester.html')
+    
