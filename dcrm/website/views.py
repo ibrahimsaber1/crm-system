@@ -6,21 +6,22 @@ from .forms import SignUpForm
 # Create your views here.
 
 def home(request):
-    # Checking if the user is loged in or not
+    # Checking if the user is logged in or not
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-        #authentication
-        user = authenticate(request , username=username , password=password)
+        username = request.POST.get("username")
+        password = request.POST.get("password1")  # Adjust this to match your form field name
+        # authentication
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, "u succesfully loged in :)")
+            messages.success(request, "You successfully logged in :)")
             return redirect('home')
         else:
-            messages.info(request, "there was an error and we cant log u in :(" )
+            messages.info(request, "There was an error, and we can't log you in :(")
             return redirect('home')
     else:
-        return render(request , 'website/home.html')
+        return render(request, 'website/home.html')
+    
 
 def login_user(request): 
     pass
